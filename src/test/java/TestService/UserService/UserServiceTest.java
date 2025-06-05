@@ -25,7 +25,7 @@ public class UserServiceTest {
         // Khởi tạo trước tất cả các test
         User user = new User("U01", "encodedPassword", true);
         User user2 = new User("U02", "encodedPassword", true);
-
+        User user3 = new User("U03", "aajbfafb", false);
 
         userRepository=mock(UserRepository.class);
         passwordEncoder=mock(IPasswordEncoder.class);
@@ -76,5 +76,14 @@ public class UserServiceTest {
 
         // It will be return true cause in our repository we don't contain any user have id U03
         assertFalse(userService.isValidUser("U03","12314"));
+    }
+
+    @Test
+    @DisplayName("Test a test case with user with unenabled")
+    void test_EnableUser(){
+        // First we need to create a new user with a status enable because we have two user above but those don't
+        // contain an unequaled status
+
+        assertFalse(userService.isValidUser("U03","aajbfafb"));
     }
 }
