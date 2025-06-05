@@ -62,4 +62,13 @@ public class UserServiceTest {
     void testIsValidUser() {
         // Viết test case ở đây
     }
+
+    @Test
+    @DisplayName("Test case with valid user with correct id and password")
+    void test_User(){
+        boolean result=userService.isValidUser("U01","123456");
+        assertTrue(result,"User should be valid with correct id and password");
+    }
+
+
 }
