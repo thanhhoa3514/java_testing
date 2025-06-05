@@ -10,6 +10,10 @@ public class UserService {
     }
     //Tuong tu nhu login
     public boolean isValidUser(String id, String password) {
+
+        if(id==null||id.isEmpty()||password==null||password.isEmpty()){
+            throw  new IllegalArgumentException("Invalid ID and Password and must be not empty");
+        }
         User user = userRepository.findById(id);
         return isEnabledUser(user) &&
                 isValidPassword(user, password);

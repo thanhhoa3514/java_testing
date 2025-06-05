@@ -100,4 +100,30 @@ public class UserServiceTest {
 //        assertFalse(userService.isValidUser("U01","12314"));
         assertTrue(userService.isValidUser("U01","encodedPassword"));
     }
+
+    @Test
+    @DisplayName("Test with exception")
+    void test_ThrowEx(){
+//        Exception ex=assertThrows(IllegalArgumentException.class,()->{
+//            userService.isValidUser(null,"encodedPassword");
+//        });
+//        Exception ex=assertThrows(IllegalArgumentException.class,()->{
+//            userService.isValidUser("","encodedPassword");
+//        });
+//        Exception ex=assertThrows(IllegalArgumentException.class,()->{
+//            userService.isValidUser("U01","");
+//        });
+//        Exception ex=assertThrows(IllegalArgumentException.class,()->{
+//            userService.isValidUser("U01",null);
+//        });
+//        assertEquals("Invalid ID and Password and must be not empty", ex.getMessage());
+
+
+
+        assertThrows(IllegalArgumentException.class, () -> userService.isValidUser(null, "123456"), "Should throw exception for null ID");
+        assertThrows(IllegalArgumentException.class, () -> userService.isValidUser("", "123456"), "Should throw exception for empty ID");
+        assertThrows(IllegalArgumentException.class, () -> userService.isValidUser("U01", null), "Should throw exception for null password");
+        assertThrows(IllegalArgumentException.class, () -> userService.isValidUser("U01", ""), "Should throw exception for empty password");
+        assertThrows(IllegalArgumentException.class, () -> userService.isValidUser(null, null), "Should throw exception for null ID and password");
+    }
 }
