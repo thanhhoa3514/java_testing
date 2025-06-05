@@ -35,6 +35,8 @@ public class UserServiceTest {
         when(passwordEncoder.encode("123456")).thenReturn("encodedPassword");
 
         when(userRepository.findById("U01")).thenReturn(user);
+        when(userRepository.findById("U02")).thenReturn(user2);
+        when(userRepository.findById("U03")).thenReturn(user3);
     }
 
     @AfterAll
@@ -83,7 +85,19 @@ public class UserServiceTest {
     void test_EnableUser(){
         // First we need to create a new user with a status enable because we have two user above but those don't
         // contain an unequaled status
+//        User user3 = new User("U03", "aajbfafb", false);
 
         assertFalse(userService.isValidUser("U03","aajbfafb"));
+    }
+
+    @Test
+    @DisplayName("Test a test case with  invalid user's password")
+    void test_PasswordUser(){
+
+        // we assume that when user type password we will check id and password
+        // we see in above contructor we have defined user U01 got "encodedPassword" password and
+        // also defined stubborn test when user type 12314 it returns aajbfafb it doesn't match so it will return false
+//        assertFalse(userService.isValidUser("U01","12314"));
+        assertTrue(userService.isValidUser("U01","encodedPassword"));
     }
 }
