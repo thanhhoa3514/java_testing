@@ -70,5 +70,11 @@ public class UserServiceTest {
         assertTrue(result,"User should be valid with correct id and password");
     }
 
+    @Test
+    @DisplayName("Test with invalid id user ")
+    void test_InvalidUserId(){
 
+        // It will be return true cause in our repository we don't contain any user have id U03
+        assertFalse(userService.isValidUser("U03","12314"));
+    }
 }
